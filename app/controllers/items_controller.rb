@@ -7,8 +7,13 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(post_image_params)
     @item.customer_id = current_customer.id
-    @item.save
-    redirect_to items_path
+    
+    if @item.save
+      redirect_to items_path
+    else
+      render :new
+    end
+    
   end
 
   def index

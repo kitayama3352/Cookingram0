@@ -28,7 +28,7 @@
 <div>
 <p>コメント件数：<%= @item.comments.count %></p>
 <% @item.comments.each do |comment| %>
-  <p><%= image_tag('no_image.jpg') %></p>
+  <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
   <%= comment.customer.name %>
   <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
   
