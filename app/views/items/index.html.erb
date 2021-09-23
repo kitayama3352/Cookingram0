@@ -9,7 +9,7 @@
   <p>ショップ名：<%= item.name %></p>
   <p>説明：<%= item.caption %></p>
   <p>ユーザーネーム：<%= item.customer.name %></p>
-  <p><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></p>
+  <p><%= link_to "#{item.comments.count}", item_path(item.id) %></p>
 
 </div>
 <% end %>
