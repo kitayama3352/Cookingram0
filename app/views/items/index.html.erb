@@ -13,13 +13,26 @@
         <div class="col-10">
           <p class="card-title">
             <%= link_to  item_path(item.id), class:"text-dark"  do %>
-              <strong><i class="far fa-flag"></i><span> <%= item.name %></span></strong>
+              <strong><i class=""></i><span> <%= item.name %></span></strong>
             <% end %>
           </p>
-          <p class="card-text">説明：<%= item.caption %></p>
-          <span><i class="fas fa-user"></i> By <%= item.customer.name %> ｜ </span>
+          <p class="card-text">商品紹介：<%= item.caption %></p>
+          <span><i class="fas fa-user"></i>　<%= item.customer.name %> ｜ </span>
           <span><%= link_to "#{item.comments.count} コメント", item_path(item.id), class:"text-dark" %></span>
         </div>
+            <% if item.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to item_favorites_path(item), method: :delete do %>
+        ♥<%= item.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to item_favorites_path(item), method: :post do %>
+        ♡<%= item.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
       </div>
     </div>
   </div>

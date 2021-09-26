@@ -1,14 +1,33 @@
-<div>
-  <%= attachment_image_tag @item, :image %>
-  <p>ショップ名：<%= @item.name %></p>
-  <p>説明：<%= @item.caption %></p>
-  <p>ユーザーネーム：<%= @item.customer.name %></p>
-  <p>投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @item.customer == current_customer %>
-    <%= link_to "削除", item_path(@item), method: :delete %>
-  <% end %>
+<div class="card-list-container py-5">
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <%= attachment_image_tag @item, :image,class:"card-img-top" %>
+        </div>
+        <div class="col-8">
+          <p>商品名：<%= @item.name %></p>
+          <p>商品説明：<%= @item.caption %></p>
+          <p>ユーザー：<%= @item.customer.name %></p>
+          <p>投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
+            <% if @item.customer == current_customer %>
+              <%= link_to "削除", item_path(@item), class: "btn btn-danger", method: :delete %>
+            <% end %>
+        </div>
+        <div class="col-8">
+          <%= form_with(model:[@item, @comment], local: true) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+            <p><%= f.submit "送信する" %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   
-  
+  <div>
+    
     <% if @item.favorited_by?(current_customer) %>
     <p>
       <%= link_to item_favorites_path(@item), method: :delete do %>
@@ -23,27 +42,31 @@
     </p>
   <% end %>
   
-</div>
-
-<div>
+  
 <p>コメント件数：<%= @item.comments.count %></p>
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+
 <% @item.comments.each do |comment| %>
-  <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
-  <%= comment.customer.name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %>
+  <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <%= comment.customer.name %></p>
+  <p>コメント</p>
+  <%= comment.comment %>
   
   <% if comment.customer == current_customer %>
-    <div>
-      <%= link_to "削除", item_comment_path(comment.item, comment), method: :delete %>
-    </div>
+      <%= link_to "削除", item_comment_path(comment.item, comment),class: "btn btn-danger", method: :delete %>
   <% end %>
   
 <% end %>
 </div>
-
-<div>
-<%= form_with(model:[@item, @comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
 </div>
+</div>
+
+
