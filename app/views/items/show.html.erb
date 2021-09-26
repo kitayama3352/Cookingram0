@@ -25,48 +25,23 @@
   </div>
 </div>
 
-  
-  <div>
-    
-    <% if @item.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to item_favorites_path(@item), method: :delete do %>
-        ♥<%= @item.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to item_favorites_path(@item), method: :post do %>
-        ♡<%= @item.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-  
-  
-<p>コメント件数：<%= @item.comments.count %></p>
-
-
-
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-
-<% @item.comments.each do |comment| %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %>
-  <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <%= comment.customer.name %></p>
-  <p>コメント</p>
-  <%= comment.comment %>
-  
-  <% if comment.customer == current_customer %>
-      <%= link_to "削除", item_comment_path(comment.item, comment),class: "btn btn-danger", method: :delete %>
-  <% end %>
-  
-<% end %>
+      <div class="card">
+        <h5 class="card-header">コメント一覧 (コメント件数：<%= @item.comments.count %>)</h5>
+          <div class="card-body">
+             <% @item.comments.each do |comment| %>
+                <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+                <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                <%= comment.customer.name %></p>
+                <%= comment.comment %>
+                <% if comment.customer == current_customer %>
+                  <%= link_to "削除", item_comment_path(comment.item, comment),class: "btn btn-danger", method: :delete %>
+                <% end %>
+             <% end %>
+          </div>
+       </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
-

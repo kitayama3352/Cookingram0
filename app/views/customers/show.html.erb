@@ -13,12 +13,6 @@
       </div>
     </div>
 
-
-
-
-
-
-
 <div class="col-lg-8"><h2>投稿一覧</h2>
 <table class="table table-striped">
 <% @items.each do |item| %>
@@ -27,7 +21,7 @@
   <% end %>
   <p>商品名：<%= item.name %></p>
   <p>商品説明：<%= item.caption %></p>
-  <p><%= link_to '編集', items_path, class: "btn btn-secondary" %></p>
+  <p><%= link_to '編集', edit_item_path(item.id), class: "btn btn-secondary" %></p>
 <% end %>
 </table>
 </div>
