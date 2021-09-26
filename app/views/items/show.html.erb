@@ -2,23 +2,17 @@
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <div class="card-body">
       <div class="row">
-        <div class="col-4">
+        <div class="col-6">
           <%= attachment_image_tag @item, :image,class:"card-img-top" %>
         </div>
-        <div class="col-8">
+        <div class="col-6">
           <p>商品名：<%= @item.name %></p>
           <p>商品説明：<%= @item.caption %></p>
-          <p>ユーザー：<%= @item.customer.name %></p>
+          <p>投稿者：<%= @item.customer.name %></p>
           <p>投稿日時：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
             <% if @item.customer == current_customer %>
               <%= link_to "削除", item_path(@item), class: "btn btn-danger", method: :delete %>
             <% end %>
-        </div>
-        <div class="col-8">
-          <%= form_with(model:[@item, @comment], local: true) do |f| %>
-            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-            <p><%= f.submit "送信する" %></p>
-          <% end %>
         </div>
       </div>
     </div>
@@ -31,6 +25,13 @@
       <div class="card">
         <h5 class="card-header">コメント一覧 (コメント件数：<%= @item.comments.count %>)</h5>
           <div class="card-body">
+              <div class="comment-new">
+               <%= form_with(model:[@item, @comment], local: true) do |f| %>
+               <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+               <p><%= f.submit "送信する" %></p>
+               <% end %>
+              </div>
+              
              <% @item.comments.each do |comment| %>
                 <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
                 <p><%= attachment_image_tag comment.customer, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
