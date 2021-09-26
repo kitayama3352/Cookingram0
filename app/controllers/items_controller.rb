@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+
+  before_action :authenticate_customer!
+  before_action :ensure_correct_user,only: [:edit,:update,:destory]
   
   def new
      @item = Item.new
@@ -40,6 +43,16 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to items_path
   end
+  
+  
+  def ensure_correct_user
+    @item = Item.find(params[:id])
+    unless @item.customer_id == current_customer.id
+      redirect_to items_path
+    end
+  end
+  
+ 
   
 private
 
