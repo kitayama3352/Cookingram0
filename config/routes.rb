@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions'
+  }
+  
+  get "/admin/top" => "users#top"
+
+  devise_scope :admins do
+    get '/admins/sign_in', to: 'admins/sessions#new'
+    get '/admins/sign_out', to: 'admins/sessions#destroy'
+  end
+  
   get 'customers/show'
   devise_for :customers
   root to: 'homes#top'
@@ -9,5 +21,6 @@ Rails.application.routes.draw do
   end
   
   resources :customers, only: [:show,:edit,:update]
+  
   
 end
