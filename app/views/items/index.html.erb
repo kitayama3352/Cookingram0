@@ -16,7 +16,9 @@
               <strong><i class=""></i><span> <%= item.name %></span></strong>
             <% end %>
           </p>
-          <p class="card-text"><%= item.caption %></p>
+          <p class="card-text">
+            <%= item.caption %>
+          </p>
           <span><i class="fas fa-user"></i>　<%= item.customer.name %> ｜ </span>
           <span><%= link_to "#{item.comments.count} コメント", item_path(item.id), class:"text-dark" %></span>
         </div>

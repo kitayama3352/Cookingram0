@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'inquiries/new'
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',
     sessions: 'admins/sessions'
@@ -21,6 +22,13 @@ Rails.application.routes.draw do
   end
   
   resources :customers, only: [:show,:edit,:update]
+  
+  
+  get 'inquiries/new', as: 'inquiry'
+  post 'inquiries' => 'inquiries#create'
+  
+  get 'thanks'=> 'inquiries#thanks', as: 'thanks'
+  
   
   
 end
