@@ -5,14 +5,14 @@
         <%= attachment_image_tag @customer, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
         <div class="card-body">
           <h5 class="card-title"><%= @customer.name %></h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text"><%= @customer.introduction %></p>
         </div>
           <div class="card-body">
             <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-secondary" %></p>
           </div>
       </div>
     </div>
-    
+
     <div class="col-lg-8"><h2>投稿一覧</h2>
       <table class="table table-striped">
        <% @items.each do |item| %>

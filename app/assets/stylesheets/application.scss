@@ -18,16 +18,19 @@
 @import 'font-awesome';
 
 
-
-
 body{
     min-height: 100vh;
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
     font-family: sans-serif;
+    
 }
 
-h1{
-  font-family: cursive
+.logo{
+  font-family: 'arial black'
+}
+
+h4{
+  font-family: 'arial black'
 }
 
 .notification:not(:last-child){

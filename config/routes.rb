@@ -29,6 +29,4 @@ Rails.application.routes.draw do
   
   get 'thanks'=> 'inquiries#thanks', as: 'thanks'
   
-  
-  
 end

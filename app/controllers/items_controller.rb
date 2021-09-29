@@ -43,8 +43,7 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to items_path
   end
-  
-  
+ 
   def ensure_correct_user
     @item = Item.find(params[:id])
     unless @item.customer_id == current_customer.id
