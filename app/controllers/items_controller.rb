@@ -20,7 +20,8 @@ class ItemsController < ApplicationController
   end
 
   def index
-     @items = Item.all
+    @items = Item.all
+    @customers = Customer.all
   end
 
   def show
