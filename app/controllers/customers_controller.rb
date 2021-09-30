@@ -1,7 +1,6 @@
 class CustomersController < ApplicationController
   
   before_action :authenticate_customer!
-  before_action :ensure_correct_user,only: [:edit,:update,:destory,:show]
 
 
   def show
@@ -11,6 +10,11 @@ class CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    if @customer == current_customer
+      render "edit"
+    else
+      redirect_to customer_path(current_customer.id)
+    end
   end
 
   def update

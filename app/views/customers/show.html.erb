@@ -8,7 +8,9 @@
           <p class="card-text"><%= @customer.introduction %></p>
         </div>
           <div class="card-body">
+            <% if @customer == current_customer %>
             <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-secondary" %></p>
+            <% end %>
           </div>
       </div>
     </div>
@@ -20,8 +22,10 @@
         <%= attachment_image_tag item, :image, :fill, 60, 60%>
        <% end %>
        <p><%= item.name %></p>
+       <% if item.customer == current_customer %>
        <p><%= link_to '編集', edit_item_path(item.id), class: "btn btn-secondary" %>
        <%= link_to "削除", "/items/#{item.id}", method: :delete, class: "btn btn-danger" %></p>
+       <% end %>
        <% end %>
    </div>
   </div>
