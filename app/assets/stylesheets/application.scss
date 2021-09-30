@@ -21,6 +21,7 @@
 body{
     min-height: 100vh;
     font-family: sans-serif;
+  
 }
 
 .logo{
@@ -59,4 +60,9 @@ a {
 
 .comment-new{
   margin-bottom:50px;
+}
+
+.paginate{
+  margin:40px auto;
+  color:#4169e1;
 }

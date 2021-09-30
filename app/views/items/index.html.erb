@@ -8,6 +8,10 @@
   </div>
 </div>
 
+<div class= "paginate">
+  <%= paginate @items %>
+</div>
+
   
   
   <% @items.each do |item| %>
@@ -49,5 +53,7 @@
     </div>
   </div>
   <% end %>
+  
+<div class= "paginate">
+  <%= paginate @items %>
 </div>
-
