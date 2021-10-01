@@ -1,11 +1,11 @@
 class CustomersController < ApplicationController
-  
+
   before_action :authenticate_customer!
 
 
   def show
     @customer = Customer.find(params[:id])
-    @items = @customer.items.page(params[:page]).per(4)
+    @items = @customer.items.page(params[:page]).per(3)
   end
 
   def edit

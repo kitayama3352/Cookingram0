@@ -70,3 +70,19 @@ a {
   font-family: 'arial black';
   font-size: 25px
 }
+
+.container-top{
+   background-image:image-url('kitchen.jpg');
+   background-position: bottom center;
+   background-size:cover;
+   height:1200px;
+}
+
+.main-container{
+  font-family: 'arial black';
+  color:#ffffff;
+}
+
+header{
+  color:#ff0000;
+}

@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container-top">
   <div class="row">
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 mt-5 text-center">
 　　　<div class="main-container">
   　　　　<h1>This is my Favourite Item</h1>
   　　　　<p>おすすめの調理道具を紹介し合うサイト</p>
-　　　</div>
+
 　　　<% if curent_customer =! customer_signed_in? %>
 　　　<div>
 　　　  <%= link_to "新規登録", new_customer_registration_path,class:"btn btn-info"%>
@@ -12,7 +12,7 @@
 　　　  <%= link_to "ログイン", new_customer_session_path,class:"btn btn-success" %>
 　　　</div>
 　　　<% end %>
+　　　</div>
 　　</div>
 　</div>
 </div>
-
