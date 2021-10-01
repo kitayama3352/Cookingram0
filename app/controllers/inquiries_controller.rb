@@ -5,8 +5,8 @@ class InquiriesController < ApplicationController
   end
 
   def create
-    inquiry = Inquiry.new(inquiry_params)
-    if inquiry.save
+    @inquiry = Inquiry.new(inquiry_params)
+    if @inquiry.save
       redirect_to thanks_path
     else
       render :new
