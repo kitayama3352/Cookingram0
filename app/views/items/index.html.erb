@@ -1,3 +1,25 @@
+<div class="search">
+<%= search_form_for @search do |f| %>
+  <%= f.search_field :caption_cont, placeholder: "キーワードを入力", required: true %>
+  <%= f.submit "検索" %>
+<% end %>
+</div>
+
+
+<div class="list-wrap">
+<% if @search.conditions.present? %>
+  <% @products.each do |product| %>
+    <div class="list-box">
+      <%= link_to item_path(product.id) do %>
+        <%= attachment_image_tag product, :image, :fill, 200, 200, format: 'jpeg' %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+
+
 <div class= "container">
   <div class = "row">
     <div class= "col-md-12 mt-5 text-center">
@@ -8,6 +30,7 @@
   </div>
 </div>
 
+
 <div class= "paginate">
   <%= paginate @items %>
 </div>
@@ -15,11 +38,9 @@
 <div class="list-wrap">
 <% @items.each do |item| %>
   <div class="list-box">
-    <%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg' %>
-    <div class="list-comment">
-      <span class="list-body"><%= item.caption %></span>
-      <span class="list-title"><%=link_to item.name, item_path(item.id) %></span>
-    </div>
+    <%= link_to item_path(item.id) do %>
+      <%= attachment_image_tag item, :image, :fill, 200, 200, format: 'jpeg' %>
+    <% end %>
   </div>
 <% end %>
 </div>
